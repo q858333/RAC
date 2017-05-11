@@ -8,6 +8,6 @@
 
 #import "DBFatherVC.h"
 
-@interface DBRACKVOVC : DBFatherVC
+@interface DBKVOVC : DBFatherVC
 
 @end

@@ -6,16 +6,21 @@
 //  Copyright © 2017年 dengbin. All rights reserved.
 //
 
-#import "DBRACKVOVC.h"
+#import "DBKVOVC.h"
 
-@interface DBRACKVOVC ()
+@interface DBKVOVC ()
 
 @end
 
-@implementation DBRACKVOVC
+@implementation DBKVOVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"offset" object:nil] subscribeNext:^(NSNotification *notification) {
+        NSLog(@"notification.name ---%@", notification.name);
+        NSLog(@"notification.object----%@", notification.object);
+    }];
     
     //nav的第一个子视图是scrollview的时候   系统才自动给scrollview加上64的inset
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -24,7 +29,10 @@
     scrolView.backgroundColor = [UIColor greenColor];
     [self.view addSubview:scrolView];
     [RACObserve(scrolView, contentOffset) subscribeNext:^(id x) {
-        NSLog(@"%@",x);
+        NSLog(@"offset---%@",x);
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"offset" object:x];
+
+
     }];
     // Do any additional setup after loading the view.
 }
