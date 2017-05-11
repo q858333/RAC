@@ -16,6 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     //nav的第一个子视图是scrollview的时候   系统才自动给scrollview加上64的inset
     self.automaticallyAdjustsScrollViewInsets = NO;
     UIScrollView *scrolView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 100, 400, 400)];

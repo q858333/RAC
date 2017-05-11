@@ -16,7 +16,33 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+[[self.button rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
 
+
+    NSLog(@"%@",x);
+
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"RAC" message:@"123" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:@"ok", nil];
+    [[self rac_signalForSelector:@selector(alertView:clickedButtonAtIndex:) fromProtocol:@protocol(UIAlertViewDelegate)] subscribeNext:^(RACTuple *tuple) {
+        NSLog(@"%@",tuple);
+        NSLog(@"%@",tuple.first);
+    }];
+    [alertView show];
+
+}];
+
+
+    [[self.textField rac_textSignal] subscribeNext:^(id x) {
+        NSLog(@"%@",x);
+    }];
+
+
+    UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc]init];
+    [[tapGR rac_gestureSignal] subscribeNext:^(__kindof UIGestureRecognizer * _Nullable x) {
+        NSLog(@"%@",x);
+    }];
+
+    [self.label addGestureRecognizer:tapGR];
+    
     // Do any additional setup after loading the view.
 }
 
