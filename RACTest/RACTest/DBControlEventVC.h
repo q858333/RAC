@@ -9,6 +9,7 @@
 #import "DBFatherVC.h"
 
 @interface DBControlEventVC : DBFatherVC
+
 @property (weak, nonatomic) IBOutlet UILabel *label;
 
 @property (weak, nonatomic) IBOutlet UIButton *button;

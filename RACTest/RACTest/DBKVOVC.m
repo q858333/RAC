@@ -9,6 +9,7 @@
 #import "DBKVOVC.h"
 
 @interface DBKVOVC ()
+@property(nonatomic,strong)NSString *name;
 
 @end
 
@@ -32,8 +33,16 @@
         NSLog(@"offset---%@",x);
         [[NSNotificationCenter defaultCenter] postNotificationName:@"offset" object:x];
 
-
     }];
+//     如果self对象的name属性已j开头才会回调subscribeNext
+//    [[RACObserve(self, name)
+//      filter:^(NSString *newName) {
+//          return [newName hasPrefix:@"j"];
+//      }]
+//     subscribeNext:^(NSString *newName) {
+//         NSLog(@"----self.name--%@", newName);
+//     }];
+
     // Do any additional setup after loading the view.
 }
 

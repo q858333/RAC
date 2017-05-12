@@ -11,6 +11,7 @@
 @interface DBTableViewController ()
 {
     NSArray  *_titles;
+
 }
 @end
 

@@ -9,7 +9,6 @@
 #import "DBControlEventVC.h"
 
 @interface DBControlEventVC ()
-
 @end
 
 @implementation DBControlEventVC
@@ -22,16 +21,26 @@
     NSLog(@"%@",x);
 
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"RAC" message:@"123" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:@"ok", nil];
-    [[self rac_signalForSelector:@selector(alertView:clickedButtonAtIndex:) fromProtocol:@protocol(UIAlertViewDelegate)] subscribeNext:^(RACTuple *tuple) {
-        NSLog(@"%@",tuple);
-        NSLog(@"%@",tuple.first);
-    }];
+//    [[self rac_signalForSelector:@selector(alertView:clickedButtonAtIndex:) fromProtocol:@protocol(UIAlertViewDelegate)] subscribeNext:^(RACTuple *tuple) {
+//        NSLog(@"%@",tuple);
+//        NSLog(@"%@",tuple.first);
+//    }];
     [alertView show];
+
+
+    [[alertView rac_buttonClickedSignal] subscribeNext:^(id x) {
+        NSLog(@"%@",x);
+    }];
+
+
 
 }];
 
+    
+
 
     [[self.textField rac_textSignal] subscribeNext:^(id x) {
+        self.name = x;
         NSLog(@"%@",x);
     }];
 
